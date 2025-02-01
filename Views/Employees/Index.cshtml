@@ -1,0 +1,77 @@
+﻿@model List<Employees>
+
+<h2 class="text-center mb-4">Employee Management</h2>
+
+<div class="row mb-3">
+    <div class="col">
+        <a class="btn btn-success" asp-controller="Employees" asp-action="Create">
+            <i class="bi bi-person-plus-fill"></i> Add New Employee
+        </a>
+    </div>
+</div>
+
+<!-- Success Message -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<!-- Employee Table -->
+<table class="table table-bordered table-hover shadow-sm text-center">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>E-Mail</th>
+            <th>Number</th>
+            <th>Department</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var employee in Model)
+            {
+                <tr>
+                    <td>@employee.EmployeeID</td>
+                    <td>@employee.EmployeeName</td>
+                    <td>@employee.EmployeeEmail</td>
+                    <td>@employee.EmployeeNumber</td>
+                    <td>@employee.EmployeeDepartment</td>
+                    <td class="text-nowrap">
+                        <a class="btn btn-sm btn-primary" asp-controller="Employees" asp-action="Edit" asp-route-id="@employee.EmployeeID">
+                            <i class="bi bi-pencil-fill"></i> Edit
+                        </a>
+                        <a class="btn btn-sm btn-danger delete-confirm" asp-controller="Employees" asp-action="Delete" asp-route-id="@employee.EmployeeID">
+                            <i class="bi bi-trash-fill"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center text-muted">No employees found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".delete-confirm").forEach(function (btn) {
+                btn.addEventListener("click", function (event) {
+                    if (!confirm("Are you sure you want to delete this employee?")) {
+                        event.preventDefault();
+                    }
+                });
+            });
+        });
+    </script>
+}

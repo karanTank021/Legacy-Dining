@@ -1,0 +1,60 @@
+﻿@model EmployeesDTO
+
+<div class="row">
+    <div class="col-md-8 mx-auto rounded border p-4 shadow-lg bg-light">
+        <h2 class="text-center mb-4">New Employee</h2>
+
+        <!-- Employee Creation Form -->
+        <form method="post" enctype="multipart/form-data">
+            <!-- Employee Name -->
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label fw-bold">Employee Name</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="EmployeeName" placeholder="Enter Employee Name">
+                    <span asp-validation-for="EmployeeName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Employee E-Mail -->
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label fw-bold">Employee E-Mail</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="EmployeeEmail" placeholder="Enter Employee Email">
+                    <span asp-validation-for="EmployeeEmail" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Employee Number -->
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label fw-bold">Employee Number</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="EmployeeNumber" placeholder="Enter Contact Number">
+                    <span asp-validation-for="EmployeeNumber" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Employee Department -->
+            <div class="row mb-4">
+                <label class="col-sm-4 col-form-label fw-bold">Employee Department</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="EmployeeDepartment" placeholder="Enter Department">
+                    <span asp-validation-for="EmployeeDepartment" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="row">
+                <div class="offset-sm-4 col-sm-4 d-grid">
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-person-plus"></i> Submit
+                    </button>
+                </div>
+                <div class="col-sm-4 d-grid">
+                    <a class="btn btn-danger" asp-controller="Employees" asp-action="Index" role="button">
+                        <i class="bi bi-x-circle"></i> Cancel
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
